@@ -1,8 +1,6 @@
 {
   "name": "blog",
   "author": "onekx",
-  "version": "0.1.0",
-  "homepage": "https://onekx.github.io/blog",
   "private": true,
   "dependencies": {
     "react": "16.13.1",
@@ -13,8 +11,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -27,8 +24,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "gh-pages": "^2.2.0"
   }
 }
