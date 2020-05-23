@@ -1,23 +1,78 @@
 .header {
     height: 80px;
-    line-height: 80px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .logo {
+    line-height: 80px;
+}
+
+.hidenLogo {
+    display: none;
+}
+
+.showUl {
     display: inline-block;
+    line-height: 55px;
+}
+
+.menu {
+    display: none;
     position: absolute;
+    top: 19px;
     left: 5%;
+    width: 24px;
+    height: 18px;
+}
+
+.menu::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background-color: #000;
+}
+
+.menu::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background-color: #000;
+}
+
+.close::before {
+    top: 8px;
+    transition: all .5s ease;
+    transform:rotate(45deg)
+}
+
+.close::after {
+    bottom: 8px;
+    transition: all .5s ease;
+    transform:rotate(-45deg)
+}
+
+.hidenLine {
+    opacity: 0;
+}
+
+.line {
+    height: 2px;
+    background-color: #000;
+    margin: 8px 0 7px 0;
 }
 
 ul {
-    position: absolute;
-    right: 10%;
     list-style: none;
-    display: inline-block;
 }
 
 li {
-    display: inline-block;    
+    display: inline-block;
+    line-height: 80px;    
     padding-left: 50px;
 }
 
@@ -28,4 +83,30 @@ a {
 
 a:hover {
     color: #979797;
+}
+
+@media only screen and (max-width: 600px) {
+    .header {
+        position: fixed;
+        height: 55px;
+        width: 100%;
+        box-shadow: 0 1px 6px 0 rgba(32,33,36,.28);
+    }
+
+    ul {
+        display: none;
+    }
+
+    li {
+        line-height: 55px;
+    }
+    
+    .logo {
+        line-height: 55px;
+        margin: 0 auto;
+    }
+
+    .menu {
+        display: inline-block;
+    }
 }
