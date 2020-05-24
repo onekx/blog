@@ -15,40 +15,45 @@ class Header extends Component {
             showUl: !showUl,
             showLine: !showLine
         })
-        document.querySelector('.line').classList.toggle('hidenLine')
+        document.querySelector('.line').classList.toggle('hiden-line')
         document.querySelector('.menu').classList.toggle('close')
-        document.querySelector('ul').classList.toggle('showUl')
+        document.querySelector('.nav-list').classList.toggle('show-nav')
     }
 
     showLogo = () => {
         const { showLogo } = this.state
-        return showLogo ? 'logo' : 'hidenLogo'
+        return showLogo ? 'logo' : 'hiden-logo'
     }
 
     render() {
         return(
-            <nav className="header">
-                <div className={this.showLogo()}>
-                    <a href='http://localhost:3000'>Kx's Blog</a>
+            <header className="header">
+                <div className="header-inner">
+                    <div className={this.showLogo()}>
+                        <a href='http://localhost:3000'>Kx's Blog</a>
+                    </div>
+                    <div className="menu" onClick={this.switchState}>
+                        <div className="line"></div>
+                    </div>
+                    <nav className="nav-list">
+                        <ul>
+                            <li className="nav-item">
+                                <a href='http://localhost:3000'>首页</a>
+                            </li>
+                            <li className="nav-item">
+                                <a href='http://localhost:3000'>归档</a>
+                            </li>
+                            <li className="nav-item">
+                                <a href='http://localhost:3000'>标签</a>
+                            </li>
+                            <li className="nav-item">
+                                <a href='http://localhost:3000'>关于</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <div className="menu" onClick={this.switchState}>
-                    <div className="line"></div>
-                </div>
-                <ul>
-                    <li>
-                        <a href='http://localhost:3000'>首页</a>
-                    </li>
-                    <li>
-                        <a href='http://localhost:3000'>归档</a>
-                    </li>
-                    <li>
-                        <a href='http://localhost:3000'>标签</a>
-                    </li>
-                    <li>
-                        <a href='http://localhost:3000'>关于</a>
-                    </li>
-                </ul>
-            </nav>
+                
+            </header>
         )
     }  
 }
