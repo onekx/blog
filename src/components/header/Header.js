@@ -30,7 +30,9 @@ class Header extends Component {
             <header className="header">
                 <div className="header-inner">
                     <div className={this.showLogo()}>
-                        <a href='http://localhost:3000'>Kx's Blog</a>
+                        <span className="logo-text">
+                            <a href='http://localhost:3000'>Kx's Blog</a>
+                        </span>
                     </div>
                     <div className="menu" onClick={this.switchState}>
                         <div className="line"></div>
