@@ -2,21 +2,21 @@ import React, { useState } from 'react'
 import './style.css'
 
 const Header = () => {
-    const [defaultClass, setClass] = useState({
-        showLogo: true,
-        showUl: false,
-        showLine: true
-    })
+    const [showLogo, setLogo] = useState(true)
+    const [showUl, setUl] = useState(false)
+    const [showLine, setLine] = useState(true)
 
     const switchState = () => {
-        setClass(!defaultClass)
+        setLogo(!showLogo)
+        setUl(!showUl)
+        setLine(!showLine)
         document.querySelector('.line').classList.toggle('hiden-line')
         document.querySelector('.menu').classList.toggle('close')
         document.querySelector('.nav-list').classList.toggle('show-nav')
     }
 
     const changeLogo = () => {
-        return defaultClass.showLogo ? 'logo' : 'hiden-logo'
+        return showLogo ? 'logo' : 'hiden-logo'
     }
 
     return(
