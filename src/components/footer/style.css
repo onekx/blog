@@ -1,0 +1,33 @@
+.footer {
+    background-color: #3c4859;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.footer a {
+    text-decoration: none;
+    background-color: transparent;
+    color: #fff;
+}
+
+.footer a:visited {
+    color: #fff;
+}
+
+.footer-divide {
+    padding: 0 10px;
+}
+
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+}
+
+.beian-img {
+    width: 20px;
+    height: 20px;
+}
