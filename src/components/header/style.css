@@ -18,6 +18,14 @@
     color: #3c4859;
     background-color: transparent;
     text-decoration: none;
+    border-radius: 5px;
+    margin-right: 5px;
+    transition: all .2s;
+}
+
+.header a:hover {
+    background-color: #3c4859;
+    color: #fff;
 }
 
 .header .nav a {
