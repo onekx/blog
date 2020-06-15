@@ -22,13 +22,19 @@
     padding: 0 10px;
 }
 
-/* .fixed-footer {
+.fixed-footer {
     position: fixed;
     bottom: 0;
-} */
+}
 
 @media (max-width: 600px) {
     .footer {
         flex-wrap: wrap;
+    }
+}
+
+@media (max-height: 600px) {
+    .fixed-footer {
+        position: relative;
     }
 }
