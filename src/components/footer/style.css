@@ -27,7 +27,8 @@
     bottom: 0;
 }
 
-.beian-img {
-    width: 20px;
-    height: 20px;
+@media (max-width: 600px) {
+    .footer {
+        flex-wrap: wrap;
+    }
 }
