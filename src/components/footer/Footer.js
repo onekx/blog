@@ -9,8 +9,7 @@ const Footer = () => {
             <a href="http://beian.miit.gov.cn/">蜀ICP备20017413</a>
             <p className="footer-divide"> | </p>
             <a href="http://www.beian.gov.cn/">
-                <image src="../img/beian.png" alt="beian" className="beian-img" />
-                <span>川公网安备 号码</span>
+                <span>川公网安备 51192302000184</span>
             </a>
         </footer>
     )
