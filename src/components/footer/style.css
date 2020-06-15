@@ -22,10 +22,10 @@
     padding: 0 10px;
 }
 
-.fixed-footer {
+/* .fixed-footer {
     position: fixed;
     bottom: 0;
-}
+} */
 
 @media (max-width: 600px) {
     .footer {
