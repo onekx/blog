@@ -10,7 +10,7 @@ import Classify from './components/classify/Classify'
 class App extends Component {
   render() {
     return (
-      <Router forceRefresh={true}>
+      <Router>
         <Header />
         <Route path="/" exact component={Article} />
         <Route path="/detail" component={Detail} />
