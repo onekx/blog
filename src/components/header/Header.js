@@ -9,7 +9,7 @@ const Header = () => {
             </div>
             <div className="nav">
                 <a href="/">首页</a>
-                <a href="/">分类</a>
+                <a href="/">归类</a>
                 <a href="/">关于</a>
             </div>
         </header>

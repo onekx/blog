@@ -27,14 +27,18 @@
     bottom: 0;
 }
 
+.hidden-divider {
+    display: inline-block;
+}
+
 @media (max-width: 600px) {
     .footer {
         flex-wrap: wrap;
     }
 }
 
-@media (max-height: 600px) {
-    .fixed-footer {
-        position: relative;
+@media (max-width: 505px) {
+    .hidden-divider {
+        display: none;
     }
 }
