@@ -24,9 +24,9 @@ const Article = () => {
                         </p>
                     </div>
                 </div>
-                <footer className="article-footer">
-                    <a href="/">阅读全文＞ </a>
-                </footer>
+                <div className="article-footer">
+                    <a href="/detail">阅读全文＞ </a>
+                </div>
             </article>
         </div>
     )
