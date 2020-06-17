@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './style.css'
 import marked from 'marked'
 import hljs from "highlight.js"
@@ -33,27 +33,25 @@ let html = marked("### 对Promise的理解:\n" +
     ""
 )
 
-class Detail extends Component {
-    render() {
-        return (
-            <div className="container">
-                <div className="content">
-                    <header>
-                        <h1 className="article-title">react-native 软件反馈收集系统</h1>
-                        <div className="article-info">
-                            <div className="time">
-                                <time>2020-6-15</time>
-                            </div>
-                            <div className="article-category">
-                                <a href="/">React-Native</a>
-                            </div>
+const Detail = () => {
+    return (
+        <div className="container">
+            <div className="content">
+                <header>
+                    <h1 className="article-title">react-native 软件反馈收集系统</h1>
+                    <div className="article-info">
+                        <div className="time">
+                            <time>2020-6-15</time>
                         </div>
-                    </header>
-                    <div className="article-content" dangerouslySetInnerHTML={{ __html: html }}></div>
-                </div>
+                        <div className="article-category">
+                            <a href="/">React-Native</a>
+                        </div>
+                    </div>
+                </header>
+                <div className="article-content" dangerouslySetInnerHTML={{ __html: html }}></div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default Detail
