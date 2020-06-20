@@ -5,7 +5,7 @@ import Article from './components/article/Article'
 import Footer from './components/footer/Footer'
 import Detail from './components/detail/Detail'
 import About from './components/about/About'
-import Classify from './components/classify/Classify'
+import Archive from './components/archive/Archive'
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
       <Header />
       <Route path="/" exact component={Article} />
       <Route path="/detail" component={Detail} />
-      <Route path="/classify" component={Classify} />
+      <Route path="/Archive" component={Archive} />
       <Route path="/about" component={About} />
       <Footer />
     </Router>
