@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-const Classify = () => {
+const Archive = () => {
     return (
         <div className="container">
             <div className="classify-main">
@@ -46,4 +46,4 @@ const Classify = () => {
     )
 }
 
-export default Classify
+export default Archive
