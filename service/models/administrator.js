@@ -1,7 +1,7 @@
-var mongoose = require('mongoose')
-var Schema = mongoose.Schema
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-var AdministratorSchema = new Schema({
+const AdministratorSchema = new Schema({
     name: String,
     password: String
 })
