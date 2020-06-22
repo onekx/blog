@@ -48,14 +48,13 @@ const AddArticle = () => {
                     <Row gutter={10} >
                         <Col span={20}>
                             <Input
-                                placeholder="博客标题"
+                                placeholder="文章标题"
                                 size="large" />
                         </Col>
                         <Col span={4}>
-                            &nbsp;
-                            <Select defaultValue="Sign Up" size="large">
-                                <Option value="Sign Up">视频教程</Option>
-                            </Select>
+                            <Input
+                                placeholder="文章归类"
+                                size="large" />
                         </Col>
                     </Row>
                     <br />
@@ -66,33 +65,33 @@ const AddArticle = () => {
                                 className="markdown-content"
                                 rows={35}
                                 placeholder="文章内容"
-                                onChange={changeContent} 
+                                onChange={changeContent}
                                 onPressEnter={changeContent}
                             />
                         </Col>
                         <Col span={12}>
-                            <div className="show-html" dangerouslySetInnerHTML = {{__html:markdownContent}} ></div>
+                            <div className="show-html" dangerouslySetInnerHTML={{ __html: markdownContent }} ></div>
                         </Col>
                     </Row>
                 </Col>
-
                 <Col span={6}>
                     <Row>
                         <Col span={24}>
-                            <Button type="primary" size="large">发布文章</Button>
+                            <div className="post-article-btn">
+                                <Button type="primary" size="large">发布文章</Button>
+                            </div>
                             <br />
                         </Col>
                         <Col span={24}>
-                            <br />
                             <TextArea
                                 rows={4}
                                 placeholder="文章简介"
-                                value={introducemd}  
-                                onChange={changeIntroduce} 
+                                value={introducemd}
+                                onChange={changeIntroduce}
                                 onPressEnter={changeIntroduce}
                             />
                             <br /><br />
-                            <div className="introduce-html" dangerouslySetInnerHTML = {{__html:'文章简介：'+introducehtml}}></div>
+                            <div className="introduce-html" dangerouslySetInnerHTML={{ __html: '文章简介：' + introducehtml }} />
                         </Col>
                         <Col span={12}>
                             <div className="date-select">
