@@ -1,19 +1,28 @@
 import React, { useState } from 'react'
-import { Card, Input, Button, Spin } from 'antd'
+import { Card, Input, Button, Spin, message } from 'antd'
 import { KeyOutlined, UserOutlined } from '@ant-design/icons'
 import 'antd/dist/antd.css'
 import '../static/css/Login.css'
+import axios from 'axios'
 
-const Login = () => {
+const Login = (props) => {
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
     const checkLogin = () => {
         setIsLoading(true)
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 1000)
+        axios.post('http://localhost:6767/admin/login', {
+            "name": userName,
+            "password": password
+        })
+            .then(res => {
+                setIsLoading(false)
+                res.data.ok
+                    ? props.history.push('/index')
+                    : message.error('用户名或密码错误', 2)
+            })
+            .catch(err => console.log(err))
     }
 
     return (
