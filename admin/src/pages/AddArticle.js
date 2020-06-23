@@ -1,22 +1,19 @@
 import React, { useState } from 'react'
 import marked from 'marked'
 import '../static/css/AddArticle.css'
-import { Row, Col, Input, Select, Button, DatePicker } from 'antd'
+import { Row, Col, Input, Button, DatePicker, message } from 'antd'
+import axios from 'axios'
 
-const { Option } = Select
 const { TextArea } = Input
 
 const AddArticle = () => {
-    const [articleId, setArticleId] = useState(0)  // 文章的ID，如果是0说明是新增加，如果不是0，说明是修改
-    const [articleTitle, setArticleTitle] = useState('')   //文章标题
-    const [articleContent, setArticleContent] = useState('')  //markdown的编辑内容
-    const [markdownContent, setMarkdownContent] = useState('预览内容') //html内容
-    const [introducemd, setIntroducemd] = useState()            //简介的markdown内容
-    const [introducehtml, setIntroducehtml] = useState('等待编辑') //简介的html内容
-    const [showDate, setShowDate] = useState()   //发布日期
-    const [updateDate, setUpdateDate] = useState() //修改日志的日期
-    const [typeInfo, setTypeInfo] = useState([]) // 文章类别信息
-    const [selectedType, setSelectType] = useState(1) //选择的文章类别
+    const [articleTitle, setArticleTitle] = useState('')                  // 文章标题
+    const [articleTags, setArticleTags] = useState([])                    // 文章归类
+    const [articleContent, setArticleContent] = useState('')              // markdown 的编辑内容
+    const [markdownContent, setMarkdownContent] = useState('预览内容')     // 转换成 html 的内容
+    const [introducemd, setIntroducemd] = useState()                      // 简介的 markdown 内容
+    const [introducehtml, setIntroducehtml] = useState('等待编辑')         // 简介的 html 内容
+    const [showDate, setShowDate] = useState()                            // 发布日期
 
     marked.setOptions({
         renderer: marked.Renderer(),
@@ -29,16 +26,49 @@ const AddArticle = () => {
         smartypants: false,
     })
 
+    // 将输入的 markdown 格式的文章内容转换为 HTML 格式
     const changeContent = (e) => {
         setArticleContent(e.target.value)
         let html = marked(e.target.value)
         setMarkdownContent(html)
     }
 
+    // 将输入的 markdown 格式的文章简介转换为 HTML 格式
     const changeIntroduce = (e) => {
         setIntroducemd(e.target.value)
         let html = marked(e.target.value)
         setIntroducehtml(html)
+    }
+
+    // 发布文章
+    const postArticle = () => {
+        if (!articleTitle) {
+            return message.error('文章标题不能为空')
+        } else if (articleTags.length === 0) {
+            return message.error('文章类别不能为空')
+        } else if (!articleContent) {
+            return message.error('文章内容不能为空')
+        } else if (!introducemd) {
+            return message.error('文章简介不能为空')
+        } else if (!showDate) {
+            return message.error('文章发布时间不能为空')
+        } else {
+            axios.post('http://localhost:6767/admin/article', {
+                "title": articleTitle,
+                "content": markdownContent,
+                "time": showDate,
+                "tags": articleTags,
+                "desc": introducemd
+            })
+                .then(message.success('文章成功上传！'))
+                .catch(err => console.log(err))
+        }
+    }
+
+    // 将输入的 string 类型的文章类别按 , 分割成一个数组
+    const setArchive = (value) => {
+        const tags = value.split(",")
+        setArticleTags(tags)
     }
 
     return (
@@ -49,12 +79,16 @@ const AddArticle = () => {
                         <Col span={20}>
                             <Input
                                 placeholder="文章标题"
-                                size="large" />
+                                size="large"
+                                onChange={(e) => setArticleTitle(e.target.value)}
+                            />
                         </Col>
                         <Col span={4}>
                             <Input
                                 placeholder="文章归类"
-                                size="large" />
+                                size="large"
+                                onChange={(e) => setArchive(e.target.value)}
+                            />
                         </Col>
                     </Row>
                     <br />
@@ -78,7 +112,9 @@ const AddArticle = () => {
                     <Row>
                         <Col span={24}>
                             <div className="post-article-btn">
-                                <Button type="primary" size="large">发布文章</Button>
+                                <Button type="primary" size="large" onClick={postArticle}>
+                                    发布文章
+                                </Button>
                             </div>
                             <br />
                         </Col>
@@ -98,6 +134,7 @@ const AddArticle = () => {
                                 <DatePicker
                                     placeholder="发布日期"
                                     size="large"
+                                    onChange={(data, dataString) => setShowDate(dataString)}
                                 />
                             </div>
                         </Col>
