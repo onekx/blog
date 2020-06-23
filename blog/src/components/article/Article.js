@@ -42,7 +42,7 @@ const Article = () => {
                         </div>
                     </div>
                     <div className="article-footer">
-                        <a href="/detail">阅读全文＞ </a>
+                        <a href={`/detail/${val._id}`}>阅读全文＞ </a>
                     </div>
                 </article>
             )

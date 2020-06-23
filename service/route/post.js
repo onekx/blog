@@ -35,4 +35,11 @@ post.route('/admin/article')
         })
     })
 
+post.get('/admin/article/:id', (req, res) => {
+    Article.findById(req.params.id, (err, doc) => {
+        if (err) res.send(err)
+        else res.send(doc)
+    })
+})
+
 module.exports = post
