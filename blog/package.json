@@ -3,6 +3,7 @@
   "author": "onekx",
   "private": true,
   "dependencies": {
+    "axios": "0.19.2",
     "highlight.js": "10.1.0",
     "marked": "1.1.0",
     "react": "16.13.1",
@@ -11,7 +12,7 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3001 && react-scripts start",
     "build": "react-scripts build"
   },
   "browserslist": {
