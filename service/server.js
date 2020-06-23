@@ -13,8 +13,10 @@ app.use(bodyParser.json())
 // 引入后台路由
 const admin = require('./route/admin')
 const post = require('./route/post')
+const archive = require('./route/tags')
 app.use(admin)
 app.use(post)
+app.use(archive)
 
 // 连接数据库并监听端口
 const port = 6767

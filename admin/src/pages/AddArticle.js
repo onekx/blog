@@ -8,7 +8,7 @@ const { TextArea } = Input
 
 const AddArticle = () => {
     const [articleTitle, setArticleTitle] = useState('')                  // 文章标题
-    const [articleTags, setArticleTags] = useState([])                    // 文章归类
+    const [articleTag, setArticleTag] = useState('')                    // 文章归类
     const [articleContent, setArticleContent] = useState('')              // markdown 的编辑内容
     const [markdownContent, setMarkdownContent] = useState('预览内容')     // 转换成 html 的内容
     const [introducemd, setIntroducemd] = useState()                      // 简介的 markdown 内容
@@ -44,7 +44,7 @@ const AddArticle = () => {
     const postArticle = () => {
         if (!articleTitle) {
             return message.error('文章标题不能为空')
-        } else if (articleTags.length === 0) {
+        } else if (!articleTag) {
             return message.error('文章类别不能为空')
         } else if (!articleContent) {
             return message.error('文章内容不能为空')
@@ -57,18 +57,12 @@ const AddArticle = () => {
                 "title": articleTitle,
                 "content": markdownContent,
                 "time": showDate,
-                "tags": articleTags,
+                "tag": articleTag,
                 "desc": introducemd
             })
                 .then(message.success('文章成功上传！'))
                 .catch(err => console.log(err))
         }
-    }
-
-    // 将输入的 string 类型的文章类别按 , 分割成一个数组
-    const setArchive = (value) => {
-        const tags = value.split(",")
-        setArticleTags(tags)
     }
 
     return (
@@ -87,7 +81,7 @@ const AddArticle = () => {
                             <Input
                                 placeholder="文章归类"
                                 size="large"
-                                onChange={(e) => setArchive(e.target.value)}
+                                onChange={(e) => setArticleTag(e.target.value)}
                             />
                         </Col>
                     </Row>

@@ -43,6 +43,7 @@ const Login = (props) => {
                         placeholder="输入密码"
                         prefix={<KeyOutlined />}
                         onChange={(e) => { setPassword(e.target.value) }}
+                        onPressEnter={checkLogin}
                     />
                     <br /><br />
                     <Button type="primary" size="large" block onClick={checkLogin} className="login-btn" > 登录 </Button>
