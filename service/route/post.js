@@ -28,5 +28,11 @@ post.route('/admin/article')
             else res.json({ ok: true })
         })
     })
+    .get((req, res) => {
+        Article.find((err, doc) => {
+            if (err) res.send(err)
+            else res.send(doc)
+        })
+    })
 
 module.exports = post
