@@ -12,8 +12,8 @@ const App = () => {
     <Router>
       <Header />
       <Route path="/" exact component={Article} />
-      <Route path="/detail" component={Detail} />
-      <Route path="/Archive" component={Archive} />
+      <Route path="/detail/:id" component={Detail} />
+      <Route path="/archive" component={Archive} />
       <Route path="/about" component={About} />
       <Footer />
     </Router>
