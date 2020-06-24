@@ -14,7 +14,7 @@ const ModifyArticle = () => {
     const [articleTag, setArticleTag] = useState('')                      // 文章归类
     const [articleContent, setArticleContent] = useState('')              // markdown 的编辑内容
     const [markdownContent, setMarkdownContent] = useState('预览内容')     // 转换成 html 的内容
-    const [introduce, setIntroduce] = useState('')                        // 简介的 markdown 内容
+    const [introduce, setIntroduce] = useState('')                        // 简介内容
     const [showDate, setShowDate] = useState('')                          // 发布日期
 
     marked.setOptions({
@@ -46,13 +46,27 @@ const ModifyArticle = () => {
             .catch(err => console.log(err))
     }, [id])
 
-    console.log(showDate)
-
     // 将输入的 markdown 格式的文章内容转换为 HTML 格式
     const changeContent = (e) => {
         setArticleContent(e.target.value)
         let html = marked(e.target.value)
         setMarkdownContent(html)
+    }
+
+    // 确认修改文章
+    const confirmModify = () => {
+        axios.put(`http://localhost:6767/admin/article/${id}`, {
+            "title": articleTitle,
+            "content": markdownContent,
+            "time": showDate,
+            "tag": articleTag,
+            "desc": introduce
+        })
+            .then(res => message.success(res.data))
+            .catch(err => {
+                message.error('出错了')
+                console.log(err)
+            })
     }
 
     return (
@@ -101,7 +115,7 @@ const ModifyArticle = () => {
                                 <Row>
                                     <Col span={24}>
                                         <div className="post-article-btn">
-                                            <Button type="primary" size="large">
+                                            <Button type="primary" size="large" onClick={confirmModify}>
                                                 修改文章
                                             </Button>
                                         </div>

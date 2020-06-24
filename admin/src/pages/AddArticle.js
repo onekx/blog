@@ -11,8 +11,7 @@ const AddArticle = () => {
     const [articleTag, setArticleTag] = useState('')                      // 文章归类
     const [articleContent, setArticleContent] = useState('')              // markdown 的编辑内容
     const [markdownContent, setMarkdownContent] = useState('预览内容')     // 转换成 html 的内容
-    const [introducemd, setIntroducemd] = useState()                      // 简介的 markdown 内容
-    const [introducehtml, setIntroducehtml] = useState('等待编辑')         // 简介的 html 内容
+    const [introduce, setIntroduce] = useState()                      // 简介内容
     const [showDate, setShowDate] = useState()                            // 发布日期
 
     marked.setOptions({
@@ -33,13 +32,6 @@ const AddArticle = () => {
         setMarkdownContent(html)
     }
 
-    // 将输入的 markdown 格式的文章简介转换为 HTML 格式
-    const changeIntroduce = (e) => {
-        setIntroducemd(e.target.value)
-        let html = marked(e.target.value)
-        setIntroducehtml(html)
-    }
-
     // 发布文章
     const postArticle = () => {
         if (!articleTitle) {
@@ -48,7 +40,7 @@ const AddArticle = () => {
             return message.error('文章类别不能为空')
         } else if (!articleContent) {
             return message.error('文章内容不能为空')
-        } else if (!introducemd) {
+        } else if (!introduce) {
             return message.error('文章简介不能为空')
         } else if (!showDate) {
             return message.error('文章发布时间不能为空')
@@ -58,7 +50,7 @@ const AddArticle = () => {
                 "content": markdownContent,
                 "time": showDate,
                 "tag": articleTag,
-                "desc": introducemd
+                "desc": introduce
             })
                 .then(message.success('文章成功上传！'))
                 .catch(err => console.log(err))
@@ -116,12 +108,11 @@ const AddArticle = () => {
                             <TextArea
                                 rows={4}
                                 placeholder="文章简介"
-                                value={introducemd}
-                                onChange={changeIntroduce}
-                                onPressEnter={changeIntroduce}
+                                value={introduce}
+                                onChange={e => setIntroduce(e.target.value)}
+                                onPressEnter={e => setIntroduce(e.target.value)}
                             />
                             <br /><br />
-                            <div className="introduce-html" dangerouslySetInnerHTML={{ __html: '文章简介：' + introducehtml }} />
                         </Col>
                         <Col span={12}>
                             <div className="date-select">

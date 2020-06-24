@@ -20,7 +20,7 @@ post.route('/admin/article')
         article.desc = req.body.desc
         archive.save(err => {
             if (err)
-                console.log(err)
+                res.send(err)
         })
         article.save((err) => {
             if (err)
@@ -43,9 +43,23 @@ post.route('/admin/article/:id')
         })
     })
     .delete((req, res) => {
-        Article.deleteOne({"_id": req.params.id}, err => {
+        Article.deleteOne({ "_id": req.params.id }, err => {
             if (err) res.send(err)
             else res.send('文章已删除')
+        })
+    })
+    .put((req, res) => {
+        Article.update({ "_id": req.params.id }, {
+            $set: {
+                "title": req.body.title,
+                "time": req.body.time,
+                "content": req.body.content,
+                "desc": req.body.desc,
+                "tag": req.body.tag
+            }
+        }, err => {
+            if (err) res.send(err)
+            else res.send('文章已更新')
         })
     })
 
