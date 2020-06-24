@@ -6,7 +6,7 @@ import '../static/css/ArticleList.css'
 
 const { confirm } = Modal
 
-const ArticleList = () => {
+const ArticleList = (props) => {
     const [list, setList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
@@ -37,9 +37,12 @@ const ArticleList = () => {
                     })
                     .catch(err => console.log(err))
             },
-            onCancel() {}
+            onCancel() { }
         })
     }
+
+    // 跳转到修改文章界面
+    const toModify = (id) => props.history.push(`/index/modify/${id}`)
 
     return (
         <>
@@ -83,7 +86,7 @@ const ArticleList = () => {
                                             <b>{item.time}</b>
                                         </Col>
                                         <Col span={5}>
-                                            <Button type="primary" >修改</Button>&nbsp;
+                                            <Button type="primary" onClick={() => toModify(item._id)}>修改</Button>&nbsp;
                                             <Button type="primary" onClick={() => deleteArticle(item._id)}>删除 </Button>
                                         </Col>
                                     </Row>
