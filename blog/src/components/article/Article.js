@@ -51,17 +51,17 @@ const Article = () => {
     }
 
     return (
-        <div className="container">
+        <>
             {
                 isLoading
-                    ? (<div>加载中</div>)
+                    ? (<div className="loading-text">正在加载中...</div>)
                     : (
-                        <>
+                        <div className="container">
                             {renderArticles()}
-                        </>
+                        </div>
                     )
             }
-        </div>
+        </>
     )
 }
 
