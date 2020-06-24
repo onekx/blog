@@ -6,19 +6,40 @@ import '../static/css/ArticleList.css'
 
 const { confirm } = Modal
 
-const ArticleList = (props) => {
+const ArticleList = () => {
     const [list, setList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         setIsLoading(true)
+        getArticles()
+    }, [])
+
+    // 获取所有文章
+    const getArticles = () => {
         axios.get('http://localhost:6767/admin/article')
             .then(res => {
                 setIsLoading(false)
                 setList(res.data)
             })
             .catch(err => console.log(err))
-    }, [])
+    }
+
+    // 删除文章
+    const deleteArticle = (id) => {
+        confirm({
+            content: '确定删除文章？',
+            onOk() {
+                axios.delete(`http://localhost:6767/admin/article/${id}`)
+                    .then(res => {
+                        message.success(res.data)
+                        getArticles()
+                    })
+                    .catch(err => console.log(err))
+            },
+            onCancel() {}
+        })
+    }
 
     return (
         <>
@@ -43,7 +64,7 @@ const ArticleList = (props) => {
                                         <b>发布时间</b>
                                     </Col>
                                     <Col span={5}>
-                                        <b>操作</b>
+                                        <b className="operating">操作</b>
                                     </Col>
                                 </Row>
                             }
@@ -63,7 +84,7 @@ const ArticleList = (props) => {
                                         </Col>
                                         <Col span={5}>
                                             <Button type="primary" >修改</Button>&nbsp;
-                                            <Button >删除 </Button>
+                                            <Button type="primary" onClick={() => deleteArticle(item._id)}>删除 </Button>
                                         </Col>
                                     </Row>
                                 </List.Item>
