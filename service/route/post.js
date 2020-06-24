@@ -49,7 +49,7 @@ post.route('/admin/article/:id')
         })
     })
     .put((req, res) => {
-        Article.update({ "_id": req.params.id }, {
+        Article.updateOne({ "_id": req.params.id }, {
             $set: {
                 "title": req.body.title,
                 "time": req.body.time,
