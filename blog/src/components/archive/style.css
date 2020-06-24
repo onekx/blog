@@ -1,4 +1,4 @@
-.classify-main {
+.archive-main {
     border-radius: 8px;
     padding: 20px;
     background-color: #fff;
@@ -7,7 +7,7 @@
     flex-wrap: wrap;
 }
 
-.classify-btn {
+.archive-btn {
     height: 25px;
     padding: 10px;
     margin: 10px;
@@ -16,6 +16,6 @@
     background-color: #E0E0E0;
 }
 
-.classify-btn a {
+.archive-btn a {
     line-height: 25px;
 }

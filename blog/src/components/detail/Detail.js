@@ -15,7 +15,7 @@ marked.setOptions({
     breaks: true,
     smartLists: true,
     smartypants: true,
-    highlight: function (code) {
+    highlight: (code) => {
         return hljs.highlightAuto(code).value
     }
 })

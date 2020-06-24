@@ -24,8 +24,8 @@ const Archive = () => {
         const allTags = []
         tags.forEach((tag, index) => {
             allTags.push(
-                <div key={index} className="classify-btn">
-                    <a href="/">{tag}</a>
+                <div key={index} className="archive-btn">
+                    <a href={`/archive/${tag}`}>{tag}</a>
                 </div>
             )
         })
@@ -37,7 +37,7 @@ const Archive = () => {
             {isLoading
                 ? (<div>加载中</div>)
                 : (
-                    <div className="classify-main">
+                    <div className="archive-main">
                         {renderTags()}
                     </div>
                 )
