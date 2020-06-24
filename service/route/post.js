@@ -42,4 +42,11 @@ post.get('/admin/article/:id', (req, res) => {
     })
 })
 
+post.get('/admin/articles/:tag', (req, res) => {
+    Article.find({ "tag": req.params.tag }, (err, doc) => {
+        if (err) res.send(err)
+        else res.send(doc)
+    })
+})
+
 module.exports = post

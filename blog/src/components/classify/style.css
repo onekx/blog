@@ -1,0 +1,24 @@
+.classify-main {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.classify-header {
+    padding-bottom: 8px;
+}
+
+.classify-header p {
+    color: #ccc;
+    font-size: 20px;
+}
+
+.classify-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.classify-content a {
+    color: #666;
+    padding-bottom: 5px;
+}
