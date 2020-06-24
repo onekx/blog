@@ -35,12 +35,19 @@ post.route('/admin/article')
         })
     })
 
-post.get('/admin/article/:id', (req, res) => {
-    Article.findById(req.params.id, (err, doc) => {
-        if (err) res.send(err)
-        else res.send(doc)
+post.route('/admin/article/:id')
+    .get((req, res) => {
+        Article.findById(req.params.id, (err, doc) => {
+            if (err) res.send(err)
+            else res.send(doc)
+        })
     })
-})
+    .delete((req, res) => {
+        Article.deleteOne({"_id": req.params.id}, err => {
+            if (err) res.send(err)
+            else res.send('文章已删除')
+        })
+    })
 
 post.get('/admin/articles/:tag', (req, res) => {
     Article.find({ "tag": req.params.tag }, (err, doc) => {

@@ -1,31 +1,41 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Layout, Menu, Breadcrumb } from 'antd'
-import { FileAddOutlined, FileExcelOutlined, FileSyncOutlined } from '@ant-design/icons'
+import { FileAddOutlined, ProfileOutlined } from '@ant-design/icons'
 import '../static/css/AdminIndex.css'
 import { Route } from "react-router-dom"
 import AddArticle from './AddArticle'
+import ArticleList from './ArticleList'
 
 const { Content, Footer, Sider } = Layout
 
-const AdminIndex = () => {
+const AdminIndex = (props) => {
+
+    const handleClickArticle = e => {
+        if (e.key === 'addArticle')
+            props.history.push('/index/post')
+        else
+            props.history.push('/index/list')
+    }
+
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <Sider>
                 <div className="logo">
                     <span>Kx's Blog</span>
                 </div>
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    <Menu.Item key="1">
+                <Menu
+                    theme="dark"
+                    defaultSelectedKeys={['addArticle']}
+                    mode="inline"
+                    onClick={handleClickArticle}
+                >
+                    <Menu.Item key="addArticle">
                         <FileAddOutlined />
                         <span>添加文章</span>
                     </Menu.Item>
-                    <Menu.Item key="2">
-                        <FileSyncOutlined />
-                        <span>修改文章</span>
-                    </Menu.Item>
-                    <Menu.Item key="3">
-                        <FileExcelOutlined />
-                        <span>删除文章</span>
+                    <Menu.Item key="articleList">
+                        <ProfileOutlined />
+                        <span>文章管理</span>
                     </Menu.Item>
                 </Menu>
             </Sider>
@@ -38,6 +48,8 @@ const AdminIndex = () => {
                     <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                         <div>
                             <Route path="/index/" exact component={AddArticle} />
+                            <Route path="/index/post/" exact component={AddArticle} />
+                            <Route path="/index/list/" component={ArticleList} />
                         </div>
                     </div>
                 </Content>
