@@ -44,28 +44,31 @@ const Detail = () => {
     }, [id])
 
     return (
-        <div className="container">
+        <>
             {
                 isLoading
-                    ? (<div>加载中</div>)
+                    ? (<div className="loading-text">正在加载中...</div >)
                     : (
-                        <div className="content">
-                            <header>
-                                <h1 className="article-title">{article.title}</h1>
-                                <div className="article-info">
-                                    <div className="time">
-                                        <time>{article.time}</time>
+                        <div className="container">
+                            <div className="content">
+                                <header>
+                                    <h1 className="article-title">{article.title}</h1>
+                                    <div className="article-info">
+                                        <div className="time">
+                                            <time>{article.time}</time>
+                                        </div>
+                                        <div className="article-category">
+                                            <a href="/">{article.tag}</a>
+                                        </div>
                                     </div>
-                                    <div className="article-category">
-                                        <a href="/">{article.tag}</a>
-                                    </div>
-                                </div>
-                            </header>
-                            <div className="article-content" dangerouslySetInnerHTML={{ __html: html }}></div>
+                                </header>
+                                <div className="article-content" dangerouslySetInnerHTML={{ __html: html }}></div>
+                            </div>
                         </div>
                     )
             }
-        </div>
+        </>
+
     )
 }
 

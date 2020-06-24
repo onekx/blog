@@ -33,16 +33,20 @@ const Archive = () => {
     }
 
     return (
-        <div className="container">
-            {isLoading
-                ? (<div>加载中</div>)
-                : (
-                    <div className="archive-main">
-                        {renderTags()}
-                    </div>
-                )
+        <>
+            {
+                isLoading
+                    ? (<div className="loading-text"> 正在加载中...</div >)
+                    : (
+                        <div className="container">
+                            <div className="archive-main">
+                                {renderTags()}
+                            </div>
+                        </div>
+                    )
             }
-        </div>
+        </>
+
     )
 }
 

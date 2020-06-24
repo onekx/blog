@@ -74,6 +74,12 @@ blockquote p {
     margin-bottom: 0;
 }
 
+.loading-text {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    color: #ccc;
+}
 
 @media (max-width: 860px) {
     .container {

@@ -39,7 +39,7 @@ const Classify = () => {
                 <div className="classify-content">
                     {
                         isLoading
-                            ? (<div>加载中</div>)
+                            ? (<div className="loading-text">正在加载中...</div>)
                             : (
                                 <>
                                     {renderTitles()}
