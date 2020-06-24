@@ -5,6 +5,7 @@ import '../static/css/AdminIndex.css'
 import { Route } from "react-router-dom"
 import AddArticle from './AddArticle'
 import ArticleList from './ArticleList'
+import ModifyArticle from './ModifyArticle'
 
 const { Content, Footer, Sider } = Layout
 
@@ -45,11 +46,12 @@ const AdminIndex = (props) => {
                         <Breadcrumb.Item>后台管理</Breadcrumb.Item>
                         <Breadcrumb.Item>添加文章</Breadcrumb.Item>
                     </Breadcrumb>
-                    <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                    <div className="operate-desktop">
                         <div>
                             <Route path="/index/" exact component={AddArticle} />
                             <Route path="/index/post/" exact component={AddArticle} />
                             <Route path="/index/list/" component={ArticleList} />
+                            <Route path="/index/modify/:id" component={ModifyArticle} />
                         </div>
                     </div>
                 </Content>

@@ -8,7 +8,7 @@ const { TextArea } = Input
 
 const AddArticle = () => {
     const [articleTitle, setArticleTitle] = useState('')                  // 文章标题
-    const [articleTag, setArticleTag] = useState('')                    // 文章归类
+    const [articleTag, setArticleTag] = useState('')                      // 文章归类
     const [articleContent, setArticleContent] = useState('')              // markdown 的编辑内容
     const [markdownContent, setMarkdownContent] = useState('预览内容')     // 转换成 html 的内容
     const [introducemd, setIntroducemd] = useState()                      // 简介的 markdown 内容
@@ -66,7 +66,7 @@ const AddArticle = () => {
     }
 
     return (
-        <div>
+        <>
             <Row gutter={5}>
                 <Col span={18}>
                     <Row gutter={10} >
@@ -135,7 +135,7 @@ const AddArticle = () => {
                     </Row>
                 </Col>
             </Row>
-        </div>
+        </>
     )
 }
 
