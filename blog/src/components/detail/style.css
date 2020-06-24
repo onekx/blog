@@ -38,8 +38,9 @@
 
 pre {
     background-color: #F8F8F8;
-    padding: .5rem;
+    padding: 20px;
     border-radius: 3px;
+    font-size: 15px;
 }
 
 .article-content h3 {
@@ -52,9 +53,27 @@ pre {
     overflow-x: auto;
 }
 
-.article-content p, pre {
+.article-content ol, ul {
+    padding-left:20px;
+    font-weight: 500;
+}
+
+.article-content p, pre, h2, li, blockquote {
     margin-bottom: 10px;
 }
+
+blockquote {
+    background-color: #F8F8F8;
+    padding: 20px 10px 10px 10px;
+    border-left: 3px solid #119da4;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+blockquote p {
+    margin-bottom: 0;
+}
+
 
 @media (max-width: 860px) {
     .container {
