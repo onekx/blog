@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './style.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Article = () => {
     const [articles, setArticles] = useState([])
@@ -27,14 +28,14 @@ const Article = () => {
                 <article key={index} className="article">
                     <div className="article-body">
                         <header className="article-title">
-                            <a href="/">{val.title}</a>
+                            <Link to={`/detail/${val._id}`}>{val.title}</Link>
                         </header>
                         <div className="article-info">
                             <div className="time">
                                 <time>{val.time}</time>
                             </div>
                             <div className="article-category">
-                                <a href="/">{val.tag}</a>
+                                <Link to={`/archive/${val.tag}`}>{val.tag}</Link>
                             </div>
                         </div>
                         <div className="article-content">
@@ -42,7 +43,7 @@ const Article = () => {
                         </div>
                     </div>
                     <div className="article-footer">
-                        <a href={`/detail/${val._id}`}>阅读全文＞ </a>
+                        <Link to={`/detail/${val._id}`}>阅读全文＞ </Link>
                     </div>
                 </article>
             )

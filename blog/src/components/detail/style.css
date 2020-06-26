@@ -84,6 +84,5 @@ blockquote p {
 @media (max-width: 860px) {
     .container {
         width: auto;
-        margin: 0 20px 60px;
     }
 }

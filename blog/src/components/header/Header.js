@@ -1,16 +1,17 @@
 import React from 'react'
 import './style.css'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
         <header className="header">
             <div className="logo">
-                <a href="/">ONEKX.CN</a>
+                <Link to="/">ONEKX.CN</Link>
             </div>
             <div className="nav">
-                <a href="/">首页</a>
-                <a href="/archive">归类</a>
-                <a href="/about">关于</a>
+                <Link to="/">首页</Link>
+                <Link to="/archive">归类</Link>
+                <Link to="/about">关于</Link>
             </div>
         </header>
     )

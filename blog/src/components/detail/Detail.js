@@ -4,7 +4,8 @@ import marked from 'marked'
 import hljs from "highlight.js"
 import 'highlight.js/styles/atelier-forest-light.css'
 import axios from 'axios'
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
+
 
 marked.setOptions({
     renderer: new marked.Renderer(),
@@ -58,7 +59,7 @@ const Detail = () => {
                                             <time>{article.time}</time>
                                         </div>
                                         <div className="article-category">
-                                            <a href="/">{article.tag}</a>
+                                            <Link to="/">{article.tag}</Link>
                                         </div>
                                     </div>
                                 </header>
