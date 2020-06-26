@@ -1,7 +1,7 @@
 .container {
     width: 860px;
     margin: 0 auto;
-    margin-bottom: 60px;
+    padding-bottom: 130px;
 }
 
 .container a {
@@ -67,10 +67,7 @@
 }
 
 @media (max-width: 860px) {
-    .container {
-        width: auto;
-        margin-bottom: 60px;
-    }
+    
 
     .article {
         margin: 0 20px 20px;

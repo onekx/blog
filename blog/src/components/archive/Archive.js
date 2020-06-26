@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './style.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Archive = () => {
     const [tags, setTags] = useState([])
@@ -25,7 +26,7 @@ const Archive = () => {
         tags.forEach((tag, index) => {
             allTags.push(
                 <div key={index} className="archive-btn">
-                    <a href={`/archive/${tag}`}>{tag}</a>
+                    <Link to={`/archive/${tag}`}>{tag}</Link>
                 </div>
             )
         })
