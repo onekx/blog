@@ -1,11 +1,12 @@
 import React from 'react'
 import { Layout, Menu, Breadcrumb } from 'antd'
-import { FileAddOutlined, ProfileOutlined } from '@ant-design/icons'
+import { FileAddOutlined, ProfileOutlined, TagOutlined } from '@ant-design/icons'
 import '../static/css/AdminIndex.css'
 import { Route } from "react-router-dom"
 import AddArticle from './AddArticle'
 import ArticleList from './ArticleList'
 import ModifyArticle from './ModifyArticle'
+import DeleteTag from './DeleteTag'
 
 const { Content, Footer, Sider } = Layout
 
@@ -14,8 +15,10 @@ const AdminIndex = (props) => {
     const handleClickArticle = e => {
         if (e.key === 'addArticle')
             props.history.push('/index/post')
-        else
+        else if (e.key === 'articleList')
             props.history.push('/index/list')
+        else
+            props.history.push('/index/tag')
     }
 
     return (
@@ -38,6 +41,10 @@ const AdminIndex = (props) => {
                         <ProfileOutlined />
                         <span>文章管理</span>
                     </Menu.Item>
+                    <Menu.Item key="deleteTag">
+                        <TagOutlined />
+                        <span>标签管理</span>
+                    </Menu.Item>
                 </Menu>
             </Sider>
             <Layout>
@@ -52,6 +59,7 @@ const AdminIndex = (props) => {
                             <Route path="/index/post/" exact component={AddArticle} />
                             <Route path="/index/list/" component={ArticleList} />
                             <Route path="/index/modify/:id" component={ModifyArticle} />
+                            <Route path="/index/tag" component={DeleteTag} />
                         </div>
                     </div>
                 </Content>
