@@ -5,15 +5,22 @@
 const express = require('express')
 const tags = express.Router()
 
-const archive = require('../models/Archive')
+const Archive = require('../models/Archive')
 
 tags.get('/admin/tags', (req, res) => {
-    archive.find((err, doc) => {
+    Archive.find((err, doc) => {
         if (err) res.send(err)
         else {
             const tagsArr = doc.map(value => value.tag)
             res.send(tagsArr)
         }
+    })
+})
+
+tags.delete('/admin/tag/:tag', (req, res) => {
+    Archive.deleteOne({"tag": req.params.tag}, err =>{
+        if (err) res.send(err)
+        else res.send('删除成功')
     })
 })
 
