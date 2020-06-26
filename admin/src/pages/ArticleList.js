@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import '../static/css/ArticleList.css'
 import { List, Row, Col, Modal, message, Button, Spin } from 'antd'
 import axios from 'axios'
-import '../static/css/ArticleList.css'
 
 const { confirm } = Modal
 
