@@ -32,7 +32,7 @@ const Detail = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get(`http://localhost:6767/admin/article/${id}`)
+        axios.get(`http://47.107.240.98:6767/api/article/${id}`)
             .then(res => {
                 setIsLoading(false)
                 setArticle(res.data)
@@ -59,7 +59,7 @@ const Detail = () => {
                                             <time>{article.time}</time>
                                         </div>
                                         <div className="article-category">
-                                            <Link to="/">{article.tag}</Link>
+                                            <Link to={`/archive/${article.tag}`}>{article.tag}</Link>
                                         </div>
                                     </div>
                                 </header>

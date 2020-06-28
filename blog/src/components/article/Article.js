@@ -9,7 +9,7 @@ const Article = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get('http://localhost:6767/admin/article')
+        axios.get('http://47.107.240.98:6767/api/article')
             .then(res => {
                 setArticles(res.data)
                 setIsLoading(false)

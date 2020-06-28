@@ -14,11 +14,11 @@ const AdminIndex = (props) => {
 
     const handleClickArticle = e => {
         if (e.key === 'addArticle')
-            props.history.push('/index/post')
+            props.history.push('/post')
         else if (e.key === 'articleList')
-            props.history.push('/index/list')
+            props.history.push('/list')
         else
-            props.history.push('/index/tag')
+            props.history.push('/tag')
     }
 
     return (
@@ -55,11 +55,11 @@ const AdminIndex = (props) => {
                     </Breadcrumb>
                     <div className="operate-desktop">
                         <div>
-                            <Route path="/index/" exact component={AddArticle} />
-                            <Route path="/index/post/" exact component={AddArticle} />
-                            <Route path="/index/list/" component={ArticleList} />
-                            <Route path="/index/modify/:id" component={ModifyArticle} />
-                            <Route path="/index/tag" component={DeleteTag} />
+                            <Route path="/" exact component={AddArticle} />
+                            <Route path="/post/" exact component={AddArticle} />
+                            <Route path="/list/" component={ArticleList} />
+                            <Route path="/modify/:id" component={ModifyArticle} />
+                            <Route path="/tag" component={DeleteTag} />
                         </div>
                     </div>
                 </Content>

@@ -20,7 +20,7 @@ app.use(archive)
 
 // 连接数据库并监听端口
 const port = 6767
-mongoose.connect('mongodb://localhost:27017/blog', (err) => {
+mongoose.connect('mongodb://47.107.240.98:27017/blog', (err) => {
     if (err) console.log('数据库连接失败')
     else console.log('数据库连接成功')
 

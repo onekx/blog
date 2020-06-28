@@ -7,7 +7,7 @@ const Main = () => {
     return (
         <Router>
             <Route path="/login" exact component={Login} />
-            <Route path="/index" component={AdminIndex} />
+            <Route path="/" component={AdminIndex} />
         </Router>
     )
 }
