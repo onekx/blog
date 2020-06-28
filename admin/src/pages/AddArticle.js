@@ -45,7 +45,7 @@ const AddArticle = () => {
         } else if (!showDate) {
             return message.error('文章发布时间不能为空')
         } else {
-            axios.post('http://localhost:6767/admin/article', {
+            axios.post('http://47.107.240.98:6767/api/article', {
                 "title": articleTitle,
                 "content": markdownContent,
                 "time": showDate,

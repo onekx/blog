@@ -8,7 +8,7 @@ const post = express.Router()
 const Article = require('../models/article')
 const Archive = require('../models/Archive')
 
-post.route('/admin/article')
+post.route('/api/article')
     .post((req, res) => {
         const article = new Article()
         const archive = new Archive()
@@ -35,7 +35,7 @@ post.route('/admin/article')
         })
     })
 
-post.route('/admin/article/:id')
+post.route('/api/article/:id')
     .get((req, res) => {
         Article.findById(req.params.id, (err, doc) => {
             if (err) res.send(err)
@@ -63,7 +63,7 @@ post.route('/admin/article/:id')
         })
     })
 
-post.get('/admin/articles/:tag', (req, res) => {
+post.get('/api/articles/:tag', (req, res) => {
     Article.find({ "tag": req.params.tag }, (err, doc) => {
         if (err) res.send(err)
         else res.send(doc)

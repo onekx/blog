@@ -7,7 +7,7 @@ const admin = express.Router()
 
 const administrator = require('../models/administrator')
 
-admin.post('/admin/login', (req, res) => {
+admin.post('/api/login', (req, res) => {
     const inputName = req.body.name
     const inputPassword = req.body.password
     administrator.find((err, doc) => {

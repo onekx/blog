@@ -12,7 +12,7 @@ const Login = (props) => {
 
     const checkLogin = () => {
         setIsLoading(true)
-        axios.post('http://localhost:6767/admin/login', {
+        axios.post('http://47.107.240.98:6767/api/login', {
             "name": userName,
             "password": password
         })

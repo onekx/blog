@@ -32,7 +32,7 @@ const ModifyArticle = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get(`http://localhost:6767/admin/article/${id}`)
+        axios.get(`http://47.107.240.98:6767/api/article/${id}`)
             .then(res => {
                 const turndownService = new turndown()
                 const markdown = turndownService.turndown(res.data.content)
@@ -55,7 +55,7 @@ const ModifyArticle = () => {
 
     // 确认修改文章
     const confirmModify = () => {
-        axios.put(`http://localhost:6767/admin/article/${id}`, {
+        axios.put(`http://47.107.240.98:6767/api/article/${id}`, {
             "title": articleTitle,
             "content": markdownContent,
             "time": showDate,

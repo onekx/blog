@@ -16,7 +16,7 @@ const ArticleList = (props) => {
 
     // 获取所有文章
     const getArticles = () => {
-        axios.get('http://localhost:6767/admin/article')
+        axios.get('http://47.107.240.98:6767/api/article')
             .then(res => {
                 setIsLoading(false)
                 setList(res.data)
@@ -29,7 +29,7 @@ const ArticleList = (props) => {
         confirm({
             content: '确定删除文章？',
             onOk() {
-                axios.delete(`http://localhost:6767/admin/article/${id}`)
+                axios.delete(`http://47.107.240.98:6767/api/article/${id}`)
                     .then(res => {
                         message.success(res.data)
                         getArticles()
@@ -41,7 +41,7 @@ const ArticleList = (props) => {
     }
 
     // 跳转到修改文章界面
-    const toModify = (id) => props.history.push(`/index/modify/${id}`)
+    const toModify = (id) => props.history.push(`/modify/${id}`)
 
     return (
         <>

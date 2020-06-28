@@ -9,7 +9,7 @@ const Archive = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get('http://localhost:6767/admin/tags')
+        axios.get('http://47.107.240.98:6767/api/tags')
             .then(res => {
                 setTags(res.data)
                 setIsLoading(false)

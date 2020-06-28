@@ -11,7 +11,7 @@ const Classify = () => {
 
     useEffect(() => {
         setIsloading(true)
-        axios.get(`http://localhost:6767/admin/articles/${tag}`)
+        axios.get(`http://47.107.240.98:6767/api/articles/${tag}`)
             .then(res => {
                 setArticles(res.data)
                 setIsloading(false)

@@ -7,7 +7,7 @@ const tags = express.Router()
 
 const Archive = require('../models/Archive')
 
-tags.get('/admin/tags', (req, res) => {
+tags.get('/api/tags', (req, res) => {
     Archive.find((err, doc) => {
         if (err) res.send(err)
         else {
@@ -17,7 +17,7 @@ tags.get('/admin/tags', (req, res) => {
     })
 })
 
-tags.delete('/admin/tag/:tag', (req, res) => {
+tags.delete('/api/tag/:tag', (req, res) => {
     Archive.deleteOne({"tag": req.params.tag}, err =>{
         if (err) res.send(err)
         else res.send('删除成功')

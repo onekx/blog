@@ -13,7 +13,7 @@ const DeleteTag = () => {
 
     // 获取所有标签
     const getTags = () => {
-        axios.get('http://localhost:6767/admin/tags')
+        axios.get('http://47.107.240.98:6767/api/tags')
             .then(res => {
                 setTags(res.data)
                 setIsLoading(false)
@@ -23,7 +23,7 @@ const DeleteTag = () => {
 
     // 删除标签
     const deleteTag = (tag) => {
-        axios.delete(`http://localhost:6767/admin/tag/${tag}`)
+        axios.delete(`http://47.107.240.98:6767/api/tag/${tag}`)
             .then(res => {
                 message.success(res.data)
                 getTags()
