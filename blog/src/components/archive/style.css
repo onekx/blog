@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin: 0 20px 20px 20px;
 }
 
 .archive-btn {
@@ -13,9 +14,10 @@
     margin: 10px;
     border-radius: 10px;
     display: inline-block;
-    background-color: #E0E0E0;
+    background-color: #424242;
 }
 
 .archive-btn a {
     line-height: 25px;
+    color: #fff;
 }

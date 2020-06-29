@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-content">
-                <p>© 2020 Kx's Blog</p>
+                <p>© 2020 ONEKX</p>
                 <p className="footer-divide"> | </p>
                 <a href="http://beian.miit.gov.cn/">蜀ICP备20017413</a>
                 <p className="footer-divide hidden-divider"> | </p>
