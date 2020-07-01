@@ -32,7 +32,7 @@ post.route('/api/article')
         Article.find((err, doc) => {
             if (err) res.send(err)
             else res.send(doc)
-        })
+        }).sort({time: -1})
     })
 
 post.route('/api/article/:id')
