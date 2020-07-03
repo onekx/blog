@@ -15,10 +15,24 @@ admin.post('/api/login', (req, res) => {
         else {
             if (inputName != doc[0].name || inputPassword != doc[0].password)
                 res.json({ ok: false })
-            else
+            else {
+                req.session.name = inputName
                 res.json({ ok: true })
+            }
         }
     })
 })
+
+admin.route('/api/status')
+    .get((req, res) => {
+        if (req.session.name) res.send({ 'ok': true })
+        else res.send({ 'ok': false })
+    })
+
+admin.route('/api/logout')
+    .put((req, res) => {
+        req.session.name = null
+        res.send({ 'ok': true })
+    })
 
 module.exports = admin

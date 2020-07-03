@@ -10,13 +10,22 @@ const ArticleList = (props) => {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        setIsLoading(true)
-        getArticles()
-    }, [])
+        (async () => {
+            try {
+                const st = await axios.get('http://47.107.240.98:6767/api/status', { withCredentials: true })
+                if(st.data.ok) {
+                    setIsLoading(true)
+                    getArticles()
+                } else props.history.push('/login')
+            } catch(err) {
+                throw err
+            }
+        })()
+    }, [props.history])
 
     // 获取所有文章
     const getArticles = () => {
-        axios.get('http://47.107.240.98:6767/api/article')
+        axios.get('http://47.107.240.98:6767/api/article', { withCredentials: true })
             .then(res => {
                 setIsLoading(false)
                 setList(res.data)
@@ -43,6 +52,9 @@ const ArticleList = (props) => {
     // 跳转到修改文章界面
     const toModify = (id) => props.history.push(`/modify/${id}`)
 
+    // if (status) {
+    //     setIsLoading(true)
+    //     getArticles()
     return (
         <>
             {
@@ -86,7 +98,7 @@ const ArticleList = (props) => {
                                         </Col>
                                         <Col span={5}>
                                             <Button type="primary" onClick={() => toModify(item._id)}>修改</Button>&nbsp;
-                                            <Button type="primary" onClick={() => deleteArticle(item._id)}>删除 </Button>
+                                                <Button type="primary" onClick={() => deleteArticle(item._id)}>删除 </Button>
                                         </Col>
                                     </Row>
                                 </List.Item>
@@ -96,7 +108,9 @@ const ArticleList = (props) => {
             }
         </>
     )
-
+    // } else {
+    //     return <Redirect to="/login" />
+    // }
 }
 
 export default ArticleList
