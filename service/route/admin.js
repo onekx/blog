@@ -29,4 +29,10 @@ admin.route('/api/status')
         else res.send({ 'ok': false })
     })
 
+admin.route('/api/logout')
+    .put((req, res) => {
+        req.session.name = null
+        res.send({ 'ok': true })
+    })
+
 module.exports = admin

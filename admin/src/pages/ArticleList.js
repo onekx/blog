@@ -20,8 +20,8 @@ const ArticleList = (props) => {
             } catch(err) {
                 throw err
             }
-        })() 
-    }, [])
+        })()
+    }, [props.history])
 
     // 获取所有文章
     const getArticles = () => {

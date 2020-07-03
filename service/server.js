@@ -6,7 +6,7 @@ const seesion = require('express-session')
 
 // 解决跨域问题
 const corsOptions = {
-    origin: '服务器ip',
+    origin: '地址:端口',
     credentials: true
 }
 app.use(require('cors')(corsOptions))

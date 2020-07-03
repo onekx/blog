@@ -13,3 +13,10 @@
   background: #fff;
   min-height: 360px;
 }
+
+.bread-crumb {
+  margin: 11px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
