@@ -13,12 +13,12 @@ const { Content, Footer, Sider } = Layout
 const AdminIndex = (props) => {
 
     const handleClickArticle = e => {
-        if (e.key === 'addArticle')
-            props.history.push('/post')
-        else if (e.key === 'articleList')
-            props.history.push('/list')
+        if (e.key === 'articleList')
+            props.history.push('/index')
+        else if (e.key === 'addArticle')
+            props.history.push('/index/post')
         else
-            props.history.push('/tag')
+            props.history.push('/index/tag')
     }
 
     return (
@@ -29,17 +29,17 @@ const AdminIndex = (props) => {
                 </div>
                 <Menu
                     theme="dark"
-                    defaultSelectedKeys={['addArticle']}
+                    defaultSelectedKeys={['articleList']}
                     mode="inline"
                     onClick={handleClickArticle}
                 >
-                    <Menu.Item key="addArticle">
-                        <FileAddOutlined />
-                        <span>添加文章</span>
-                    </Menu.Item>
                     <Menu.Item key="articleList">
                         <ProfileOutlined />
                         <span>文章管理</span>
+                    </Menu.Item>
+                    <Menu.Item key="addArticle">
+                        <FileAddOutlined />
+                        <span>添加文章</span>
                     </Menu.Item>
                     <Menu.Item key="deleteTag">
                         <TagOutlined />
@@ -55,11 +55,11 @@ const AdminIndex = (props) => {
                     </Breadcrumb>
                     <div className="operate-desktop">
                         <div>
-                            <Route path="/" exact component={AddArticle} />
-                            <Route path="/post/" exact component={AddArticle} />
-                            <Route path="/list/" component={ArticleList} />
-                            <Route path="/modify/:id" component={ModifyArticle} />
-                            <Route path="/tag" component={DeleteTag} />
+                            <Route path="/" exact component={ArticleList} />
+                            <Route path="/index" exact component={ArticleList} />
+                            <Route path="/index/post/" exact component={AddArticle} />
+                            <Route path="/index/modify/:id" component={ModifyArticle} />
+                            <Route path="/index/tag" component={DeleteTag} />
                         </div>
                     </div>
                 </Content>

@@ -2,13 +2,26 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const seesion = require('express-session')
 
 // 解决跨域问题
-app.use(require('cors')())
+const corsOptions = {
+    origin: '服务器ip',
+    credentials: true
+}
+app.use(require('cors')(corsOptions))
 
 // 添加bodyParse配置，方便处理Post请求中body的内容
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+// session 配置
+app.use(seesion({
+    secret: 'administrator',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 10 }
+}))
 
 // 引入后台路由
 const admin = require('./route/admin')
