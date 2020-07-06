@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { List, Row, Col, message, Button, Spin } from 'antd'
-import axios from 'axios'
+import request from '../api/Api'
 
 const DeleteTag = () => {
     const [tags, setTags] = useState([])
@@ -12,26 +12,29 @@ const DeleteTag = () => {
     }, [])
 
     // 获取所有标签
-    const getTags = () => {
-        axios.get('http://47.107.240.98:6767/api/tags')
-            .then(res => {
-                setTags(res.data)
-                setIsLoading(false)
-            })
-            .catch(err => console.log(err))
+    const getTags = async () => {
+        try {
+            const res = await request({ url: '/tags' })
+            setTags(res.data)
+            setIsLoading(false)
+        } catch (err) {
+            throw err
+        }
     }
 
     // 删除标签
-    const deleteTag = (tag) => {
-        axios.delete(`http://47.107.240.98:6767/api/tag/${tag}`)
-            .then(res => {
-                message.success(res.data)
-                getTags()
+    const deleteTag = async (tag) => {
+        try {
+            const res = await request({
+                method: 'delete',
+                url: `/tag/${tag}`
             })
-            .catch(err => {
-                message.error('删除失败')
-                console.log(err)
-            })
+            message.success(res.data)
+            getTags()
+        } catch (err) {
+            message.error('删除失败')
+            throw err
+        }
     }
 
     return (

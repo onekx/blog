@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Menu, Breadcrumb, Button, message } from 'antd'
+import { Layout, Menu, Breadcrumb, Button } from 'antd'
 import { FileAddOutlined, ProfileOutlined, TagOutlined } from '@ant-design/icons'
 import '../static/css/AdminIndex.css'
 import { Route } from "react-router-dom"
@@ -7,7 +7,6 @@ import AddArticle from './AddArticle'
 import ArticleList from './ArticleList'
 import ModifyArticle from './ModifyArticle'
 import DeleteTag from './DeleteTag'
-import axios from 'axios'
 
 const { Content, Footer, Sider } = Layout
 
@@ -22,14 +21,9 @@ const AdminIndex = (props) => {
             props.history.push('/index/tag')
     }
 
-    const logout = async () => {
-        try {
-            const res = await axios.put('http://47.107.240.98:6767/api/logout', {}, { withCredentials: true })
-            if (res.data.ok) props.history.push('/login')
-            else message.error('登出登录失败', 2)
-        } catch (err) {
-            throw err
-        }
+    const logout = () => {
+        window.sessionStorage.removeItem("token")
+        props.history.push('/login')
     }
 
     return (

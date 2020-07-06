@@ -8,7 +8,7 @@ const tags = express.Router()
 const Archive = require('../models/Archive')
 const auth = require('../middleware/auth')
 
-tags.get('/api/tags', auth, (req, res) => {
+tags.get('/api/tags', (req, res) => {
     Archive.find((err, doc) => {
         if (err) res.send(err)
         else {

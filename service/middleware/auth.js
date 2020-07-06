@@ -5,7 +5,7 @@ const Administrator = require('../models/administrator')
 const auth = async (req, res, next) => {
     try {
         const raw = req.headers.authorization
-        const { id } = jwt.verify(raw, 'theone@kx')
+        const { id } = jwt.verify(raw, '签名')
         req.user = await Administrator.findById(id)
         next()
     } catch (err) {

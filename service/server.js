@@ -5,7 +5,6 @@ const bodyParser = require('body-parser')
 const seesion = require('express-session')
 
 // 解决跨域问题
-
 app.use(require('cors')())
 
 // 添加bodyParse配置，方便处理Post请求中body的内容
@@ -32,7 +31,7 @@ app.use(archive)
 const port = 6767
 
 // 数据库连接验证
-const auth = 'onekx:theonekx'
+const auth = '用户名:密码'
 
 mongoose.connect(`mongodb://${auth}@47.107.240.98:27017/blog`, {
     useNewUrlParser: true,

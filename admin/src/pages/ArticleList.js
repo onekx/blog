@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../static/css/ArticleList.css'
 import { List, Row, Col, Modal, message, Button, Spin } from 'antd'
-import axios from 'axios'
+import request from '../api/Api'
 
 const { confirm } = Modal
 
@@ -10,57 +10,44 @@ const ArticleList = (props) => {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        // (async () => {
-        //     try {
-        //         const st = await axios('http://47.107.240.98:6767/api/status')
-        //         if(st.data.ok) {
-        //             setIsLoading(true)
-        //             getArticles()
-        //         } else props.history.push('/login')
-        //     } catch(err) {
-        //         throw err
-        //     }
-        // })()
-        getArticles()
+        const auth = window.sessionStorage.getItem('token')
+        if (auth) getArticles()
+        else props.history.push('/login')
     }, [props.history])
 
     // 获取所有文章
-    const getArticles = () => {
-        axios({
-            url: 'http://localhost:6767/api/article',
-            headers: {
-                authorization: window.sessionStorage.getItem("token")
-            }
-        })
-            .then(res => {
-                setIsLoading(false)
-                setList(res.data)
-            })
-            .catch(err => console.log(err))
+    const getArticles = async () => {
+        try {
+            const res = await request({ url: '/article' })
+            setIsLoading(false)
+            setList(res.data)
+        } catch (err) {
+            throw err
+        }
     }
 
     // 删除文章
     const deleteArticle = (id) => {
         confirm({
             content: '确定删除文章？',
-            onOk() {
-                axios.delete(`http://47.107.240.98:6767/api/article/${id}`)
-                    .then(res => {
-                        message.success(res.data)
-                        getArticles()
+            async onOk() {
+                try {
+                    const res = await request({
+                        method: 'delete',
+                        url: `/article/${id}`
                     })
-                    .catch(err => console.log(err))
-            },
-            onCancel() { }
+                    message.success(res.data)
+                    getArticles()
+                } catch (err) {
+                    throw err
+                }
+            }
         })
     }
 
     // 跳转到修改文章界面
-    const toModify = (id) => props.history.push(`/modify/${id}`)
+    const toModify = (id) => props.history.push(`/index/modify/${id}`)
 
-    // if (status) {
-    //     setIsLoading(true)
-    //     getArticles()
     return (
         <>
             {

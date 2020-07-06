@@ -3,28 +3,32 @@ import { Card, Input, Button, Spin, message } from 'antd'
 import { KeyOutlined, UserOutlined } from '@ant-design/icons'
 import 'antd/dist/antd.css'
 import '../static/css/Login.css'
-import axios from 'axios'
+import request from '../api/Api'
 
 const Login = (props) => {
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
-    const checkLogin = () => {
+    const checkLogin = async () => {
         setIsLoading(true)
-        axios.post('http://localhost:6767/api/login', {
-            "name": userName,
-            "password": password
-        })
-            .then(res => {
-                setIsLoading(false)
-                window.sessionStorage.setItem("token", res.data.token)
+        try {
+            const res = await request({
+                method: 'post',
+                url: '/login',
+                data: {
+                    "name": userName,
+                    "password": password
+                }
             })
-            .catch(err => {
-                message.error('登录失败', 2)
-                console.log(err)
-                setIsLoading(false)
-            })
+            setIsLoading(false)
+            window.sessionStorage.setItem("token", res.data.token)
+            props.history.push('/index')
+        } catch (err) {
+            message.error('登录失败', 2)
+            setIsLoading(false)
+            throw err
+        }
     }
 
     return (

@@ -29,7 +29,7 @@ post.route('/api/article')
             else res.json({ ok: true })
         })
     })
-    .get(auth, (req, res) => {
+    .get((req, res) => {
         Article.find((err, doc) => {
             if (err) res.send(err)
             else res.send(doc)
@@ -37,7 +37,7 @@ post.route('/api/article')
     })
 
 post.route('/api/article/:id')
-    .get(auth, (req, res) => {
+    .get((req, res) => {
         Article.findById(req.params.id, (err, doc) => {
             if (err) res.send(err)
             else res.send(doc)
@@ -64,7 +64,7 @@ post.route('/api/article/:id')
         })
     })
 
-post.get('/api/articles/:tag', auth, (req, res) => {
+post.get('/api/articles/:tag', (req, res) => {
     Article.find({ "tag": req.params.tag }, (err, doc) => {
         if (err) res.send(err)
         else res.send(doc)

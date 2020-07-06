@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import turndown from 'turndown'
 import { useParams } from 'react-router-dom'
 import marked from 'marked'
 import '../static/css/AddArticle.css'
 import { Row, Col, Input, Button, DatePicker, message, Spin } from 'antd'
+import request from '../api/Api'
 
 const { TextArea } = Input
 
@@ -32,7 +32,7 @@ const ModifyArticle = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get(`http://47.107.240.98:6767/api/article/${id}`)
+        request({ url: `/article/${id}` })
             .then(res => {
                 const turndownService = new turndown()
                 const markdown = turndownService.turndown(res.data.content)
@@ -54,19 +54,21 @@ const ModifyArticle = () => {
     }
 
     // 确认修改文章
-    const confirmModify = () => {
-        axios.put(`http://47.107.240.98:6767/api/article/${id}`, {
+    const confirmModify = async () => {
+        const data = {
             "title": articleTitle,
             "content": markdownContent,
             "time": showDate,
             "tag": articleTag,
             "desc": introduce
-        })
-            .then(res => message.success(res.data))
-            .catch(err => {
-                message.error('出错了')
-                console.log(err)
-            })
+        }
+        try {
+            const res = await request({ method: 'put', url: `/article/${id}`, data })
+            message.success('修改成功')
+        } catch (err) {
+            message.error('出错了')
+            throw err
+        }
     }
 
     return (
