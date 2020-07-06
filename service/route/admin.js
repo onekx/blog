@@ -1,38 +1,28 @@
 /*
-*  此文件用于登录后台管理系统
+*  此文件用于管理员的登录和验证
 */
 
 const express = require('express')
 const admin = express.Router()
+const jwt = require('jsonwebtoken')
 
 const administrator = require('../models/administrator')
 
-admin.post('/api/login', (req, res) => {
-    const inputName = req.body.name
-    const inputPassword = req.body.password
-    administrator.find((err, doc) => {
-        if (err) console.log(err)
-        else {
-            if (inputName != doc[0].name || inputPassword != doc[0].password)
-                res.json({ ok: false })
-            else {
-                req.session.name = inputName
-                res.json({ ok: true })
-            }
-        }
+// 登录管理员
+admin.post('/api/login', async (req, res) => {
+    const user = await administrator.findOne({
+        name: req.body.name
     })
+    if (!user) res.send('用户不存在')
+    const valid = require('bcrypt').compareSync(
+        req.body.password,
+        user.password
+    )
+    if (!valid) res.send('密码错误')
+
+    const token = jwt.sign({ id: user._id }, "签名")
+
+    res.send({ user, token })
 })
-
-admin.route('/api/status')
-    .get((req, res) => {
-        if (req.session.name) res.send({ 'ok': true })
-        else res.send({ 'ok': false })
-    })
-
-admin.route('/api/logout')
-    .put((req, res) => {
-        req.session.name = null
-        res.send({ 'ok': true })
-    })
 
 module.exports = admin

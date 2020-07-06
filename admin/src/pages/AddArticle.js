@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import marked from 'marked'
 import '../static/css/AddArticle.css'
 import { Row, Col, Input, Button, DatePicker, message } from 'antd'
-import axios from 'axios'
+import request from '../api/Api'
 
 const { TextArea } = Input
 
@@ -33,7 +33,7 @@ const AddArticle = () => {
     }
 
     // 发布文章
-    const postArticle = () => {
+    const postArticle = async () => {
         if (!articleTitle) {
             return message.error('文章标题不能为空')
         } else if (!articleTag) {
@@ -45,15 +45,22 @@ const AddArticle = () => {
         } else if (!showDate) {
             return message.error('文章发布时间不能为空')
         } else {
-            axios.post('http://47.107.240.98:6767/api/article', {
-                "title": articleTitle,
-                "content": markdownContent,
-                "time": showDate,
-                "tag": articleTag,
-                "desc": introduce
-            })
-                .then(message.success('文章成功上传！'))
-                .catch(err => console.log(err))
+            try {
+                const res = await request({
+                    method: 'post',
+                    url: '/article',
+                    data: {
+                        "title": articleTitle,
+                        "content": markdownContent,
+                        "time": showDate,
+                        "tag": articleTag,
+                        "desc": introduce
+                    }
+                })
+                message.success('文章成功上传！')
+            } catch (err) {
+                throw err
+            }
         }
     }
 
