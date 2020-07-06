@@ -10,22 +10,28 @@ const ArticleList = (props) => {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        (async () => {
-            try {
-                const st = await axios.get('http://47.107.240.98:6767/api/status', { withCredentials: true })
-                if(st.data.ok) {
-                    setIsLoading(true)
-                    getArticles()
-                } else props.history.push('/login')
-            } catch(err) {
-                throw err
-            }
-        })()
+        // (async () => {
+        //     try {
+        //         const st = await axios('http://47.107.240.98:6767/api/status')
+        //         if(st.data.ok) {
+        //             setIsLoading(true)
+        //             getArticles()
+        //         } else props.history.push('/login')
+        //     } catch(err) {
+        //         throw err
+        //     }
+        // })()
+        getArticles()
     }, [props.history])
 
     // 获取所有文章
     const getArticles = () => {
-        axios.get('http://47.107.240.98:6767/api/article', { withCredentials: true })
+        axios({
+            url: 'http://localhost:6767/api/article',
+            headers: {
+                authorization: window.sessionStorage.getItem("token")
+            }
+        })
             .then(res => {
                 setIsLoading(false)
                 setList(res.data)

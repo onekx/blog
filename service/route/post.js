@@ -7,9 +7,10 @@ const post = express.Router()
 
 const Article = require('../models/article')
 const Archive = require('../models/Archive')
+const auth = require('../middleware/auth')
 
 post.route('/api/article')
-    .post((req, res) => {
+    .post(auth, (req, res) => {
         const article = new Article()
         const archive = new Archive()
         article.title = req.body.title
@@ -28,7 +29,7 @@ post.route('/api/article')
             else res.json({ ok: true })
         })
     })
-    .get((req, res) => {
+    .get(auth, (req, res) => {
         Article.find((err, doc) => {
             if (err) res.send(err)
             else res.send(doc)
@@ -36,19 +37,19 @@ post.route('/api/article')
     })
 
 post.route('/api/article/:id')
-    .get((req, res) => {
+    .get(auth, (req, res) => {
         Article.findById(req.params.id, (err, doc) => {
             if (err) res.send(err)
             else res.send(doc)
         })
     })
-    .delete((req, res) => {
+    .delete(auth, (req, res) => {
         Article.deleteOne({ "_id": req.params.id }, err => {
             if (err) res.send(err)
             else res.send('文章已删除')
         })
     })
-    .put((req, res) => {
+    .put(auth, (req, res) => {
         Article.updateOne({ "_id": req.params.id }, {
             $set: {
                 "title": req.body.title,
@@ -63,7 +64,7 @@ post.route('/api/article/:id')
         })
     })
 
-post.get('/api/articles/:tag', (req, res) => {
+post.get('/api/articles/:tag', auth, (req, res) => {
     Article.find({ "tag": req.params.tag }, (err, doc) => {
         if (err) res.send(err)
         else res.send(doc)

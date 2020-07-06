@@ -12,15 +12,13 @@ const Login = (props) => {
 
     const checkLogin = () => {
         setIsLoading(true)
-        axios.post('http://47.107.240.98:6767/api/login', {
+        axios.post('http://localhost:6767/api/login', {
             "name": userName,
             "password": password
-        }, { withCredentials: true })
+        })
             .then(res => {
                 setIsLoading(false)
-                res.data.ok
-                    ? props.history.push('/index')
-                    : message.error('用户名或密码错误', 2)
+                window.sessionStorage.setItem("token", res.data.token)
             })
             .catch(err => {
                 message.error('登录失败', 2)
