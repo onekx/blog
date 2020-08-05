@@ -2,7 +2,7 @@
 
 **使用 React + Express 搭建的个人博客，项目部署在阿里云**
 
-**博客地址：**http://www.onekx.cn/
+**博客地址:** http://www.onekx.cn/
 
 ---
 
