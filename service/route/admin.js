@@ -20,7 +20,7 @@ admin.post('/api/login', async (req, res) => {
     )
     if (!valid) res.send('密码错误')
 
-    const token = jwt.sign({ id: user._id }, "签名")
+    const token = jwt.sign({ id: user._id }, "theone@kx")
 
     res.send({ user, token })
 })
