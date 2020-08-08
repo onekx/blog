@@ -15,7 +15,7 @@ const About = () => {
                 </div>
                 <div className="about-text">
                     <strong>联系：</strong>
-                    <p>kongxinone@163.com</p>
+                    <p>kongxinone@gmail.com</p>
                 </div>
             </div>
         </div>

@@ -31,7 +31,7 @@ app.use(archive)
 const port = 6767
 
 // 数据库连接验证
-const auth = 'onekx:theonekx'
+const auth = '用户名:密码'
 
 mongoose.connect(`mongodb://${auth}@47.107.240.98:27017/blog`, {
     useNewUrlParser: true,

@@ -30,11 +30,24 @@ post.route('/api/article')
         })
     })
     .get((req, res) => {
+        const { page } = req.query
+        const skipArticle = 6 * (page - 1)
         Article.find((err, doc) => {
             if (err) res.send(err)
             else res.send(doc)
-        }).sort({ time: -1 })
+        }).sort({ time: -1 }).skip(skipArticle).limit(6)
     })
+
+// 获取
+post.get('/api/post/pagecount', (req, res) => {
+    Article.find((err, doc) => {
+        if (err) res.send(err)
+        else {
+            const count = Math.ceil(doc.length / 6)
+            res.send({ maxPage: count })
+        }
+    })
+})
 
 post.route('/api/article/:id')
     .get((req, res) => {

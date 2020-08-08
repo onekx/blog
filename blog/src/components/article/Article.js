@@ -6,10 +6,13 @@ import { Link } from 'react-router-dom'
 const Article = () => {
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const [page, setPage] = useState(1)
+    const [maxPage, setMaxPage] = useState(1)
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get('http://47.107.240.98:6767/api/article')
+        pageCount()
+        axios.get(`http://47.107.240.98:6767/api/article?page=${page}`)
             .then(res => {
                 setArticles(res.data)
                 setIsLoading(false)
@@ -18,7 +21,7 @@ const Article = () => {
                 console.log(err)
                 setIsLoading(false)
             })
-    }, [])
+    }, [page])
 
     // 主页渲染文章
     const renderArticles = () => {
@@ -51,6 +54,22 @@ const Article = () => {
         return allArticles
     }
 
+    // 设置最大页码数
+    const pageCount = async () => {
+        const { data } = await axios.get('http://47.107.240.98:6767/api/post/pagecount')
+        setMaxPage(data.maxPage)
+    }
+
+    const prePage = () => {
+        if (page === 1) return
+        else setPage(page - 1)
+    }
+
+    const lastPage = () => {
+        if (page === maxPage) return
+        else setPage(page + 1)
+    }
+
     return (
         <>
             {
@@ -59,6 +78,15 @@ const Article = () => {
                     : (
                         <div className="container">
                             {renderArticles()}
+                            <div className="page-count">
+                                <div className="page-btn" onClick={() => prePage()}>
+                                    上一页
+                                </div>
+                                <div className="page-num">{page} / {maxPage}</div>
+                                <div className="page-btn" onClick={() => lastPage()}>
+                                    下一页
+                                </div>
+                            </div>
                         </div>
                     )
             }

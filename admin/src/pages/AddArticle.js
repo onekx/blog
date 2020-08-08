@@ -11,7 +11,7 @@ const AddArticle = () => {
     const [articleTag, setArticleTag] = useState('')                      // 文章归类
     const [articleContent, setArticleContent] = useState('')              // markdown 的编辑内容
     const [markdownContent, setMarkdownContent] = useState('预览内容')     // 转换成 html 的内容
-    const [introduce, setIntroduce] = useState()                      // 简介内容
+    const [introduce, setIntroduce] = useState()                          // 简介内容
     const [showDate, setShowDate] = useState()                            // 发布日期
 
     marked.setOptions({
@@ -20,9 +20,9 @@ const AddArticle = () => {
         pedantic: false,
         sanitize: false,
         tables: true,
-        breaks: false,
+        breaks: true,
         smartLists: true,
-        smartypants: false,
+        smartypants: true,
     })
 
     // 将输入的 markdown 格式的文章内容转换为 HTML 格式
@@ -57,6 +57,7 @@ const AddArticle = () => {
                         "desc": introduce
                     }
                 })
+                console.log(res.data);
                 message.success('文章成功上传！')
             } catch (err) {
                 throw err

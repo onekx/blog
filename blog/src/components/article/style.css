@@ -66,9 +66,32 @@
     letter-spacing: 1px;
 }
 
-@media (max-width: 860px) {
-    
+.page-count {
+    display: flex;
+    justify-content: center;
+}
 
+.page-num {
+    margin: 5px 10px 0;
+    color: #3C4859;
+}
+
+.page-btn {
+    color: #3C4859;
+    width: 50px;
+    height: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    transition: all .2s;
+}
+
+.page-btn:hover {
+    background-color: #3C4859;
+    color: #fff;
+}
+
+@media (max-width: 860px) {
     .article {
         margin: 0 20px 20px;
     }
